@@ -1,30 +1,28 @@
 # mono-ubuntu1804
-mono with screen based on ubuntu 18.04 (for run opensim on mono)
-mono with screen based on ubuntu 18.04 (for run opensim on mono). it will put opensim to screen as setup in /opt/opensim/bin/autostart.sh
+mono with screen based on ubuntu 18.04 (for run opensim on mono). it will put opensim to screen as setup in /opt/opensim/bin/autostart.sh 
 
 Usages :
+<pre># docker run -d -v /host/part/to/opensim/:/opt/opensim/  dockuru101/mono-ubuntu1804:5.20.1.19-1 </pre>
 
-# docker run -d -v /host/part/to/opensim/:/opt/opensim/  dockuru101/mono-ubuntu1804:5.20.1.19-1 
 After run the container, you can access opensim console by :
+<pre> # docker exec -it <container-id> /bin/bash </pre>
+then this command : 
+<pre> screen -r</pre>
 
- # docker exec -it  /bin/bash 
-then this command :
-
- screen -r
 You can detach from opensim console by ctrl+a+d and exit bash by "exit" command.
 
 Or to stop container use "quit" command in opensim console.
 
 Example of /opt/opensim/autostart.sh :
-
-#!/bin/sh
+<pre>#!/bin/sh
 ### make sure this file is chmod +x 
 cd /opt/opensim/bin/
 rm *.log
-screen -DmS opensim mono ./OpenSim.exe 
-Dockerfile :
+screen -DmS opensim mono ./OpenSim.exe </pre>
 
-FROM ubuntu:18.04
+
+Dockerfile :
+<pre>FROM ubuntu:18.04
 
 ENV TZ America/New_York
 RUN apt-get update && apt-get install -y gnupg ca-certificates
@@ -37,4 +35,4 @@ EXPOSE 8002/tcp 8008/tcp 9000/tcp 9001/tcp 9002/tcp 9003/tcp
 EXPOSE 9000/udp 9001/udp 9002/udp 9003/udp
 WORKDIR /opt/opensim/bin
 
-CMD [ "./autostart.sh" ]
+CMD [ "./autostart.sh" ]</pre>
