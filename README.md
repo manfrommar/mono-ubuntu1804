@@ -24,11 +24,14 @@ screen -DmS opensim mono ./OpenSim.exe </pre>
 Dockerfile :
 <pre>FROM ubuntu:18.04
 
-ENV TZ America/New_York
+RUN echo America/Los_Angeles > /etc/timezone \
+    && rm -f /etc/localtime \
+    && ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
 RUN apt-get update && apt-get install -y gnupg ca-certificates
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
     && echo "deb http://download.mono-project.com/repo/ubuntu bionic main" | tee /etc/apt/sources.list.d/mono-official.list
-RUN echo $TZ > /etc/timezone && apt-get update && apt-get install -y -q screen mono-complete ca-certificates-mono  \
+RUN apt-get update && apt-get install -y -q screen mono-complete ca-certificates-mono  \
            && rm -rf /var/lib/apt/lists/* /tmp/*
 
 EXPOSE 8002/tcp 8008/tcp 9000/tcp 9001/tcp 9002/tcp 9003/tcp
