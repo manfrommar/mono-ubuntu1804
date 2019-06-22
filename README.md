@@ -2,7 +2,7 @@
 mono with screen based on ubuntu 18.04 (for run opensim on mono). it will put opensim to screen as setup in /opt/opensim/bin/autostart.sh 
 
 Usages :
-<pre># docker run -d -v /host/part/to/opensim/:/opt/opensim/  dockuru101/mono-ubuntu1804:5.20.1.19-1 </pre>
+<pre># docker run -d -v /host/part/to/opensim/:/opt/opensim/  dockuru101/mono-ubuntu1804:5.20.1.19-2 </pre>
 
 After run the container, you can access opensim console by :
 <pre> # docker exec -it <container-id> /bin/bash </pre>
