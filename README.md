@@ -5,7 +5,7 @@ Usages :
 <pre># docker run -d -v /host/part/to/opensim/:/opt/opensim/  dockuru101/mono-ubuntu1804:5.20.1.19-2 </pre>
 
 After run the container, you can access opensim console by :
-<pre> # docker exec -it container-id /bin/bash </pre>
+<pre> # docker exec -it &lt;container-id&gt; /bin/bash </pre>
 then this command : 
 <pre> screen -r</pre>
 
